@@ -1,0 +1,12 @@
+# Environment (contains API tokens)
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+
+# Claude Code local state
+.claude/settings.local.json
