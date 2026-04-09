@@ -179,32 +179,61 @@ if [ "${NEED_TOKEN:-false}" = true ]; then
 fi
 
 # ─────────────────────────────────────────────────────────────
-# 5. Install Apify Agent Skills + Awesome Skills
+# 5. Install Apify Agent Skills (interactive — 4 core skills)
 # ─────────────────────────────────────────────────────────────
 
-print_step "Installing Apify Agent Skills..."
+print_step "Installing Apify Agent Skills (core)..."
 echo ""
-echo -e "  ${BOLD}Two repos will be installed:${NC}"
-echo -e "  1. ${ORANGE}apify/agent-skills${NC}   — core skills (scraper, actor dev, etc.)"
-echo -e "  2. ${ORANGE}apify/awesome-skills${NC}  — use-case skills (lead gen, competitor intel, etc.)"
+echo -e "  A skill picker will appear with 4 skills."
+echo -e "  Press ${ORANGE}a${NC} to select all, then ${ORANGE}Enter${NC} to confirm."
 echo ""
-echo -e "  ${BOLD}When the skill picker appears, press ${ORANGE}a${NC} ${BOLD}to select all, then ${ORANGE}Enter${NC} ${BOLD}to confirm.${NC}"
+echo -e "  ${DIM}The 4 core skills:${NC}"
+echo -e "  ${DIM}  • apify-ultimate-scraper    — Scrape 55+ platforms${NC}"
+echo -e "  ${DIM}  • apify-actor-development   — Build & deploy Actors${NC}"
+echo -e "  ${DIM}  • apify-actorization        — Convert code to Actors${NC}"
+echo -e "  ${DIM}  • apify-generate-output-schema — Generate Actor schemas${NC}"
 echo ""
 
-echo -e "  ${DIM}── Installing apify/agent-skills ──${NC}"
-echo ""
 npx skills add apify/agent-skills
 
 echo ""
-echo -e "  ${DIM}── Installing apify/awesome-skills ──${NC}"
-echo ""
-npx skills add apify/awesome-skills
-
-echo ""
-print_ok "All Apify skills installed"
+print_ok "Apify Agent Skills installed"
 
 # ─────────────────────────────────────────────────────────────
-# 6. Install mcpc CLI tool
+# 6. Install Awesome Skills (9 use-case skills → .claude/skills/)
+# ─────────────────────────────────────────────────────────────
+
+print_step "Installing Apify Awesome Skills (use cases)..."
+
+SKILLS_DIR="$(pwd)/.claude/skills"
+TEMP_DIR=$(mktemp -d)
+
+print_info "Cloning apify/awesome-skills..."
+
+git clone --quiet https://github.com/apify/awesome-skills.git "$TEMP_DIR/awesome-skills"
+
+# Create .claude/skills if it doesn't exist
+mkdir -p "$SKILLS_DIR"
+
+# Copy each skill folder into .claude/skills/
+SKILL_COUNT=0
+for skill_dir in "$TEMP_DIR/awesome-skills/skills/"*/; do
+  if [ -d "$skill_dir" ]; then
+    skill_name=$(basename "$skill_dir")
+    cp -r "$skill_dir" "$SKILLS_DIR/$skill_name"
+    SKILL_COUNT=$((SKILL_COUNT + 1))
+    print_ok "$skill_name"
+  fi
+done
+
+# Clean up temp directory
+rm -rf "$TEMP_DIR"
+
+echo ""
+print_ok "$SKILL_COUNT awesome skills installed to .claude/skills/"
+
+# ─────────────────────────────────────────────────────────────
+# 7. Install mcpc CLI tool
 # ─────────────────────────────────────────────────────────────
 
 print_step "Installing mcpc CLI tool..."
@@ -217,7 +246,7 @@ else
 fi
 
 # ─────────────────────────────────────────────────────────────
-# 7. Summary
+# 8. Summary
 # ─────────────────────────────────────────────────────────────
 
 echo ""
@@ -227,7 +256,8 @@ echo -e "${GREEN}╚════════════════════
 echo ""
 echo "  What's ready:"
 echo -e "  ${GREEN}✓${NC} Claude Code"
-echo -e "  ${GREEN}✓${NC} Apify Agent Skills (4 core + 9 use-case skills)"
+echo -e "  ${GREEN}✓${NC} Apify Agent Skills (4 core via npx skills)"
+echo -e "  ${GREEN}✓${NC} Apify Awesome Skills ($SKILL_COUNT use-case skills in .claude/skills/)"
 echo -e "  ${GREEN}✓${NC} mcpc CLI tool"
 echo -e "  ${GREEN}✓${NC} Environment configured"
 echo ""

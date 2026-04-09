@@ -61,9 +61,13 @@ claude
 If skills were installed but the directory looks empty:
 
 ```bash
-# Re-install skills (select all at each prompt)
+# Re-install core agent skills (select all at the picker)
 npx skills add apify/agent-skills
-npx skills add apify/awesome-skills
+
+# Re-install awesome skills (clone into .claude/skills/)
+git clone https://github.com/apify/awesome-skills.git /tmp/awesome-skills
+cp -r /tmp/awesome-skills/skills/* .claude/skills/
+rm -rf /tmp/awesome-skills
 ```
 
 ---
