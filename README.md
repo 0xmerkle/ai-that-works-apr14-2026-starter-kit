@@ -113,7 +113,39 @@ Export as CSV.
 
 Claude Code will automatically use the right skill to find the scraper, run it, and return structured data.
 
-More example prompts are in [`first-prompt.md`](./first-prompt.md).
+### Browse all example prompts
+
+Open the prompts file right in your terminal so you can copy and paste:
+
+```bash
+cat first-prompt.md
+```
+
+Or open it in your default editor:
+
+```bash
+open first-prompt.md        # macOS
+xdg-open first-prompt.md    # Linux
+```
+
+You can also [view the prompts on GitHub](https://github.com/0xmerkle/ai-that-works-apr14-2026-starter-kit/blob/main/first-prompt.md).
+
+### Where do outputs go?
+
+When Claude Code generates a file (like a CSV, JSON export, or report), it saves it to your **current working directory** — the same folder you're running `claude` from. To find and open your results:
+
+```bash
+# List recently created files
+ls -lt *.csv *.json 2>/dev/null
+
+# Open a CSV in your default app (Excel, Numbers, etc.)
+open austin_coffee_shops.csv        # macOS
+xdg-open austin_coffee_shops.csv    # Linux
+```
+
+Claude Code will tell you the filename when it creates it. You can also ask it directly: "Where did you save that file?" or "Open the CSV you just created."
+
+> **Tip:** If you ask Claude Code to "export as CSV," it writes a `.csv` file. If you say "show me the results," it prints them directly in the terminal. Be specific about what you want.
 
 ---
 
