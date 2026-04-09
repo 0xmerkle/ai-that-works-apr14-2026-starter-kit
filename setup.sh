@@ -179,18 +179,29 @@ if [ "${NEED_TOKEN:-false}" = true ]; then
 fi
 
 # ─────────────────────────────────────────────────────────────
-# 5. Install Apify Agent Skills
+# 5. Install Apify Agent Skills + Awesome Skills
 # ─────────────────────────────────────────────────────────────
 
 print_step "Installing Apify Agent Skills..."
-
-print_info "Running: npx skills add apify/agent-skills"
+echo ""
+echo -e "  ${BOLD}Two repos will be installed:${NC}"
+echo -e "  1. ${ORANGE}apify/agent-skills${NC}   — core skills (scraper, actor dev, etc.)"
+echo -e "  2. ${ORANGE}apify/awesome-skills${NC}  — use-case skills (lead gen, competitor intel, etc.)"
+echo ""
+echo -e "  ${BOLD}When the skill picker appears, press ${ORANGE}a${NC} ${BOLD}to select all, then ${ORANGE}Enter${NC} ${BOLD}to confirm.${NC}"
 echo ""
 
+echo -e "  ${DIM}── Installing apify/agent-skills ──${NC}"
+echo ""
 npx skills add apify/agent-skills
 
 echo ""
-print_ok "Apify Agent Skills installed"
+echo -e "  ${DIM}── Installing apify/awesome-skills ──${NC}"
+echo ""
+npx skills add apify/awesome-skills
+
+echo ""
+print_ok "All Apify skills installed"
 
 # ─────────────────────────────────────────────────────────────
 # 6. Install mcpc CLI tool
@@ -216,7 +227,7 @@ echo -e "${GREEN}╚════════════════════
 echo ""
 echo "  What's ready:"
 echo -e "  ${GREEN}✓${NC} Claude Code"
-echo -e "  ${GREEN}✓${NC} Apify Agent Skills (11 skills)"
+echo -e "  ${GREEN}✓${NC} Apify Agent Skills (4 core + 9 use-case skills)"
 echo -e "  ${GREEN}✓${NC} mcpc CLI tool"
 echo -e "  ${GREEN}✓${NC} Environment configured"
 echo ""

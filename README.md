@@ -37,7 +37,9 @@ cd ai-that-works-apr14-2026-starter-kit
 ./setup.sh
 ```
 
-The script will check your system, install Claude Code (if needed), install Apify Agent Skills, and set up your environment. It will ask for your Apify API token if you haven't set one yet.
+The script will check your system, install Claude Code (if needed), install Apify skills, and set up your environment. It will ask for your Apify API token if you haven't set one yet.
+
+When the skill picker appears (twice — once for each skills repo), press **`a`** to select all skills, then **Enter** to confirm.
 
 ### 3. Start Claude Code
 
@@ -80,12 +82,19 @@ ai-that-works-apr14-2026-starter-kit/
 └── ...
 ```
 
-**Skills installed:**
+**Skills installed from `apify/agent-skills` (core):**
 
 | Skill | What it does |
 |---|---|
 | `apify-ultimate-scraper` | Scrape 55+ platforms (Instagram, Google Maps, Amazon, TikTok, etc.) |
 | `apify-actor-development` | Build and deploy your own Apify Actors |
+| `apify-actorization` | Convert existing code into Apify Actors |
+| `apify-generate-output-schema` | Generate output schemas for Actors |
+
+**Skills installed from `apify/awesome-skills` (use cases):**
+
+| Skill | What it does |
+|---|---|
 | `apify-lead-generation` | Generate B2B/B2C leads from directories and social profiles |
 | `apify-competitor-intelligence` | Analyze competitor strategies, pricing, and reviews |
 | `apify-brand-reputation-monitoring` | Track reviews, ratings, and sentiment |

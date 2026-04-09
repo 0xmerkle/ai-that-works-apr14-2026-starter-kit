@@ -61,8 +61,9 @@ claude
 If skills were installed but the directory looks empty:
 
 ```bash
-# Re-install skills
+# Re-install skills (select all at each prompt)
 npx skills add apify/agent-skills
+npx skills add apify/awesome-skills
 ```
 
 ---
