@@ -54,7 +54,7 @@ If it's below v18, update:
 Make sure you're running `claude` from inside this project directory (where `.claude/skills/` exists). Claude Code reads skills relative to your current directory.
 
 ```bash
-cd ai-that-works-starter-kit
+cd ai-that-works-apr14-2026-starter-kit
 claude
 ```
 

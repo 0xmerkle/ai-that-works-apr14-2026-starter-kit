@@ -27,8 +27,8 @@ Not sure if you have Node.js? Run `node --version` in your terminal. If you see 
 ### 1. Clone this repo
 
 ```bash
-git clone https://github.com/apify/ai-that-works-starter-kit.git
-cd ai-that-works-starter-kit
+git clone https://github.com/0xmerkle/ai-that-works-apr14-2026-starter-kit.git
+cd ai-that-works-apr14-2026-starter-kit
 ```
 
 ### 2. Run the setup script
@@ -70,7 +70,7 @@ More example prompts are in [`first-prompt.md`](./first-prompt.md).
 After running `setup.sh`, your project has:
 
 ```
-ai-that-works-starter-kit/
+ai-that-works-apr14-2026-starter-kit/
 ├── .claude/
 │   └── skills/           # Apify Agent Skills (auto-loaded by Claude Code)
 ├── .agents/
