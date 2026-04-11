@@ -2,15 +2,55 @@
 
 Get Claude Code + Apify Agent Skills running on your machine in under 5 minutes.
 
-Built for the [AI That Works](https://lu.ma/ai-that-works) meetup in Austin, TX — presented by [Apify](https://apify.com).
+Built for the AI That Works meetup in Austin, TX — presented by [Apify](https://apify.com).
 
 ---
 
-## At the Event? Start Here
+## Why skills?
 
-You'll need Claude Code for this demo. If you already ran `./setup.sh`, skip to Step 3.
+Anthropic (the company behind Claude) describes skills like recipes in a professional kitchen: MCP servers give the agent access to tools and ingredients, but **skills are the step-by-step recipes** that tell it how to use them well. The teams building the best AI agents aren't writing better prompts — they're building better skills.
+
+Here's the thing the Anthropic team emphasizes: **the best skills come from iteration.** You do a task, see what works, capture the pattern into a skill, test it, improve it, repeat. The first draft is never the final product.
+
+For the sake of time today, we're starting with skills that have already been created and tested — 9 ready-to-go workflows for common business tasks (lead generation, competitor research, e-commerce analysis, etc.). You'll pick one, run it with real data, and then **customize it** to get a feel for what the iteration process looks like. This is the same workflow Anthropic recommends, just fast-forwarded past the blank-page stage.
+
+If you want to build a skill completely from scratch for your own workflow, there's a guide for that too — see [`build-your-own-skill.md`](./build-your-own-skill.md). That's more of a 15-30 minute project for after the event.
+
+---
+
+## Prerequisites
+
+Before starting, make sure you have these ready. **If you're at the event and need help, raise your hand — we'll get you set up.**
+
+| Requirement | How to check | How to get it |
+|---|---|---|
+| **macOS or Linux** | You're on a Mac or Linux machine | Windows users: install [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) first |
+| **Node.js 18+** | Run `node --version` in your terminal | [nodejs.org](https://nodejs.org/) — download the LTS version |
+| **Git** | Run `git --version` in your terminal | Comes with macOS. Linux: `sudo apt install git` |
+| **Claude Code** | Run `claude --version` in your terminal | Install: `curl -fsSL https://claude.ai/install.sh \| bash` then restart your terminal |
+| **Anthropic account** | You can log in at [claude.ai](https://claude.ai/) | Sign up at [claude.ai](https://claude.ai/) — Pro, Max, Team, or Enterprise plan required |
+| **Apify account** | You can log in at [apify.com](https://apify.com/) | Sign up at [apify.com](https://apify.com/) — free tier works |
+| **Apify API token** | — | Copy from [console.apify.com/account/integrations](https://console.apify.com/account/integrations) |
+
+### How to open your terminal
+
+Everything in this guide runs in the **terminal** (also called the command line). Here's how to open it:
+
+- **Mac:** Press `Cmd + Space` to open Spotlight, type **Terminal**, and press Enter.
+- **Linux:** Press `Ctrl + Alt + T`, or find Terminal in your app launcher.
+- **Windows (WSL):** Open the Start menu, search for **Ubuntu** or **WSL**, and open it.
+
+Once your terminal is open, you'll type or paste commands into it for the rest of this guide.
+
+---
+
+## Let's Go
+
+If you already ran `./setup.sh`, skip to [Step 3](#step-3-pick-your-skill).
 
 ### Step 1: Clone and setup
+
+Open your terminal and paste these commands:
 
 ```bash
 git clone https://github.com/0xmerkle/ai-that-works-apr14-2026-starter-kit.git
@@ -18,17 +58,23 @@ cd ai-that-works-apr14-2026-starter-kit
 ./setup.sh
 ```
 
-The script installs Claude Code, configures your Apify API token, and loads 13 skills (4 core agent skills + 9 use-case skills). Takes about 2 minutes.
+The setup script will check your system, ask for your Apify API token, and install 13 skills (4 core agent skills + 9 use-case skills). Follow the prompts — when the skill picker appears, press `a` to select all, then `Enter`.
 
 ### Step 2: Start Claude Code
+
+In the same terminal, type:
 
 ```bash
 claude
 ```
 
+This opens Claude Code — a conversational AI agent that runs directly in your terminal. If this is your first time, it'll open a browser window for you to log in with your Anthropic account.
+
+Once you see the Claude Code prompt, you're ready.
+
 ### Step 3: Pick your skill
 
-This kit comes with 9 pre-built "awesome skills" — each one is a ready-to-go AI workflow powered by real web data. Pick the one that sounds most useful to you:
+This kit comes with 9 pre-built skills. Each one is a ready-to-go AI workflow that pulls real web data. Pick the one that sounds most relevant to you:
 
 | # | Skill | What it does | Try if you... |
 |---|---|---|---|
@@ -44,15 +90,9 @@ This kit comes with 9 pre-built "awesome skills" — each one is a ready-to-go A
 
 ### Step 4: Run the starter prompt
 
-Once you've picked a skill, copy and paste its starter prompt into Claude Code. Each prompt is designed to produce real results in 1-2 minutes.
+Each skill has a starter prompt — a ready-made request you can copy and paste straight into Claude Code.
 
-**Open the prompts file:**
-
-```bash
-cat first-prompt.md
-```
-
-Or just pick one below:
+You can find all 9 starter prompts in [`first-prompt.md`](https://github.com/0xmerkle/ai-that-works-apr14-2026-starter-kit/blob/main/first-prompt.md), or just expand the one you picked below, copy the text, and paste it into Claude Code:
 
 <details>
 <summary><strong>1. Lead Generation</strong></summary>
@@ -143,15 +183,21 @@ themes get the most interaction?
 ```
 </details>
 
+Paste your chosen prompt into Claude Code and let it run. Claude will automatically pick the right skill, find the right data tools, and bring back real results.
+
 ### Step 5: Make it yours
 
-Now that you've seen a skill in action, customize it. Ask Claude Code:
+This is where it gets interesting — and where you start to see how building skills actually works.
+
+The skill you just ran is a **first draft**. It worked, but it was built for a generic use case. Now think about something that would actually be useful to *you*. Maybe you want different data points. Maybe you care about a different city, a different platform, or a different industry. Maybe the output format isn't what you need.
+
+Start by asking Claude Code what just happened:
 
 ```
 What skill did you just use? Show me the SKILL.md file.
 ```
 
-Claude will show you the markdown file that powered the whole workflow. It's just a recipe — steps, data sources, and output format. Now tell Claude what you'd change:
+Claude will show you the markdown file that powered the whole workflow — the "recipe." It's just steps, data sources, and output format. Now tell Claude what you'd change. For example:
 
 - *"I only care about Instagram influencers under 50K followers"*
 - *"Add a column for website URL and filter out anything without a phone number"*
@@ -159,30 +205,17 @@ Claude will show you the markdown file that powered the whole workflow. It's jus
 - *"I want this for Denver, not Austin"*
 - *"Also include their top 3 most-liked posts"*
 
-Claude will update the skill file for you. Run your prompt again and see different results. You just customized an AI workflow without writing any code.
+Claude will update the skill for you. Run your prompt again and you'll see different results.
+
+**This is the iteration loop.** Define the skill, run it, look at the output, decide what's off, ask Claude to update it, run it again. That's exactly how the Anthropic team says the best skills get built — through repeated use and refinement, not by trying to get it perfect on the first try. The only difference is that today we started with an existing skill instead of a blank page, so you could skip ahead to the refinement part.
 
 ### Bonus: Build a skill from scratch
 
-Want to create a completely new skill for your own workflow? See [`build-your-own-skill.md`](./build-your-own-skill.md) for a prompt you can paste into Claude Code that walks you through the entire process — from figuring out what you need, to finding the right data sources, to generating and testing the skill.
+Want to create a completely new skill for your own workflow — starting from nothing? See [`build-your-own-skill.md`](./build-your-own-skill.md) for a prompt you can paste into Claude Code that walks you through the full process: figuring out what you need, finding the right data sources, generating the skill, and testing it. That's more of a 15-30 minute project, best done after the event when you have time to think through your specific use case.
 
 ---
 
 ## Setup Details
-
-### What You Need
-
-Before running setup, make sure you have:
-
-| Requirement | How to get it |
-|---|---|
-| **macOS or Linux** | Windows users: install [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) first |
-| **Node.js 18+** | [nodejs.org](https://nodejs.org/) — download the LTS version |
-| **Git** | Comes with macOS. Linux: `sudo apt install git` |
-| **An Anthropic account** | [claude.ai](https://claude.ai/) — Pro, Max, Team, or Enterprise |
-| **An Apify account** | [apify.com](https://apify.com/) — free tier works |
-| **Your Apify API token** | [console.apify.com/account/integrations](https://console.apify.com/account/integrations) — copy your Personal API token |
-
-Not sure if you have Node.js? Run `node --version` in your terminal. If you see `v18.x.x` or higher, you're good.
 
 ### What the setup script does
 
@@ -285,8 +318,6 @@ See [`troubleshooting.md`](./troubleshooting.md) for detailed fixes.
 - [Apify Awesome Skills](https://github.com/apify/awesome-skills) — Use-case skills (lead gen, competitor intel, etc.)
 - [Claude Code docs](https://docs.claude.com/en/docs/claude-code)
 - [Apify docs](https://docs.apify.com/)
-- [AI That Works meetup](https://lu.ma/ai-that-works)
-
 ---
 
 Built for the AI That Works meetup — presented by [Apify](https://apify.com).
