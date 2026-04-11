@@ -2,11 +2,174 @@
 
 Get Claude Code + Apify Agent Skills running on your machine in under 5 minutes.
 
-This kit was built for the [AI That Works](https://lu.ma/ai-that-works) meetup in Austin, TX. It works for anyone who wants to try AI agent skills with real web data.
+Built for the [AI That Works](https://lu.ma/ai-that-works) meetup in Austin, TX — presented by [Apify](https://apify.com).
 
 ---
 
-## What You Need
+## At the Event? Start Here
+
+You'll need Claude Code for this demo. If you already ran `./setup.sh`, skip to Step 3.
+
+### Step 1: Clone and setup
+
+```bash
+git clone https://github.com/0xmerkle/ai-that-works-apr14-2026-starter-kit.git
+cd ai-that-works-apr14-2026-starter-kit
+./setup.sh
+```
+
+The script installs Claude Code, configures your Apify API token, and loads 13 skills (4 core agent skills + 9 use-case skills). Takes about 2 minutes.
+
+### Step 2: Start Claude Code
+
+```bash
+claude
+```
+
+### Step 3: Pick your skill
+
+This kit comes with 9 pre-built "awesome skills" — each one is a ready-to-go AI workflow powered by real web data. Pick the one that sounds most useful to you:
+
+| # | Skill | What it does | Try if you... |
+|---|---|---|---|
+| 1 | **Lead Generation** | Scrape business directories and contact data from Google Maps, LinkedIn, Instagram | ...need to find potential customers or partners |
+| 2 | **Competitor Intelligence** | Analyze competitor reviews, pricing, content, and positioning | ...want to know what your competitors are doing |
+| 3 | **Brand Monitoring** | Track reviews, ratings, and sentiment across platforms | ...care about what people say about a brand |
+| 4 | **E-Commerce Research** | Pricing intelligence and product research on Amazon, Walmart, eBay | ...sell products or want to launch one |
+| 5 | **Content Analytics** | Measure engagement, campaign ROI, and content performance | ...run social media or content marketing |
+| 6 | **Influencer Discovery** | Find and vet influencers for brand partnerships | ...want to find creators to work with |
+| 7 | **Market Research** | Analyze market conditions, geography, and consumer behavior | ...are exploring a new market or location |
+| 8 | **Trend Analysis** | Track emerging trends across Google Trends and social platforms | ...want to spot what's next |
+| 9 | **Audience Analysis** | Understand demographics, preferences, and engagement patterns | ...want to know who's engaging with content |
+
+### Step 4: Run the starter prompt
+
+Once you've picked a skill, copy and paste its starter prompt into Claude Code. Each prompt is designed to produce real results in 1-2 minutes.
+
+**Open the prompts file:**
+
+```bash
+cat first-prompt.md
+```
+
+Or just pick one below:
+
+<details>
+<summary><strong>1. Lead Generation</strong></summary>
+
+```
+Find 50 coffee shops in Austin, TX with at least 4 stars on Google Maps.
+Get their name, address, phone number, website, rating, and review count.
+Export as CSV.
+```
+</details>
+
+<details>
+<summary><strong>2. Competitor Intelligence</strong></summary>
+
+```
+Compare these 3 Austin co-working spaces: Capital Factory, WeWork Austin,
+and Industrious Austin. Scrape their Google Maps reviews and ratings.
+Summarize what customers love and hate about each one.
+```
+</details>
+
+<details>
+<summary><strong>3. Brand Monitoring</strong></summary>
+
+```
+Monitor what people are saying about Franklin Barbecue in Austin.
+Scrape their latest Google Maps reviews. Run sentiment analysis and
+tell me if the vibe is shifting — are people still as enthusiastic?
+```
+</details>
+
+<details>
+<summary><strong>4. E-Commerce Research</strong></summary>
+
+```
+I'm launching a hot sauce brand in Austin. Search Amazon for the top 20
+best-selling hot sauces. Get their prices, ratings, review counts, and
+the most common complaints from 1-star reviews.
+```
+</details>
+
+<details>
+<summary><strong>5. Content Analytics</strong></summary>
+
+```
+Analyze the last 30 posts from @visitaustin on Instagram. Which content
+types get the most engagement? What posting times work best?
+```
+</details>
+
+<details>
+<summary><strong>6. Influencer Discovery</strong></summary>
+
+```
+Find 15 Austin-based food and lifestyle influencers on Instagram with
+10k-100k followers. Get their engagement rate, average likes, and
+posting frequency.
+```
+</details>
+
+<details>
+<summary><strong>7. Market Research</strong></summary>
+
+```
+I want to open a yoga studio in Austin. How many yoga studios are there,
+what are their ratings, and what neighborhoods are underserved?
+Use Google Maps data.
+```
+</details>
+
+<details>
+<summary><strong>8. Trend Analysis</strong></summary>
+
+```
+What are the trending topics in Austin's tech scene? Check Google Trends
+for "Austin AI", "Austin startups", and "Austin tech jobs" over the
+last 90 days.
+```
+</details>
+
+<details>
+<summary><strong>9. Audience Analysis</strong></summary>
+
+```
+Analyze the audience of @saboratx on Instagram. Who's engaging with
+their content? What are the peak engagement times and what content
+themes get the most interaction?
+```
+</details>
+
+### Step 5: Make it yours
+
+Now that you've seen a skill in action, customize it. Ask Claude Code:
+
+```
+What skill did you just use? Show me the SKILL.md file.
+```
+
+Claude will show you the markdown file that powered the whole workflow. It's just a recipe — steps, data sources, and output format. Now tell Claude what you'd change:
+
+- *"I only care about Instagram influencers under 50K followers"*
+- *"Add a column for website URL and filter out anything without a phone number"*
+- *"Change the output to JSON instead of CSV"*
+- *"I want this for Denver, not Austin"*
+- *"Also include their top 3 most-liked posts"*
+
+Claude will update the skill file for you. Run your prompt again and see different results. You just customized an AI workflow without writing any code.
+
+### Bonus: Build a skill from scratch
+
+Want to create a completely new skill for your own workflow? See [`build-your-own-skill.md`](./build-your-own-skill.md) for a prompt you can paste into Claude Code that walks you through the entire process — from figuring out what you need, to finding the right data sources, to generating and testing the skill.
+
+---
+
+## Setup Details
+
+### What You Need
 
 Before running setup, make sure you have:
 
@@ -21,44 +184,22 @@ Before running setup, make sure you have:
 
 Not sure if you have Node.js? Run `node --version` in your terminal. If you see `v18.x.x` or higher, you're good.
 
----
-
-## Quick Start
-
-### 1. Clone this repo
-
-```bash
-git clone https://github.com/0xmerkle/ai-that-works-apr14-2026-starter-kit.git
-cd ai-that-works-apr14-2026-starter-kit
-```
-
-### 2. Run the setup script
+### What the setup script does
 
 ```bash
 ./setup.sh
 ```
 
-The script will:
-1. Check your system (OS, Node.js, npm)
-2. Install Claude Code if you don't have it
-3. Ask for your Apify API token
-4. Install the **Apify Agent Skills** (4 core skills — see [wizard walkthrough](#apify-agent-skills-wizard) below)
-5. Install the **Apify Awesome Skills** (9 use-case skills, copied directly into `.claude/skills/`)
-6. Install the `mcpc` CLI tool
+1. Checks your system (OS, Node.js, npm)
+2. Installs Claude Code if you don't have it
+3. Asks for your Apify API token
+4. Installs **Apify Agent Skills** — 4 core skills via `npx skills add apify/agent-skills`
+5. Installs **Apify Awesome Skills** — 9 use-case skills, copied into `.claude/skills/`
+6. Installs the `mcpc` CLI tool
 
-### 3. Start Claude Code
+### Apify Agent Skills wizard
 
-```bash
-claude
-```
-
-That's it. You're ready to go.
-
----
-
-## Apify Agent Skills Wizard
-
-During setup, `npx skills add apify/agent-skills` will open an interactive picker that looks like this:
+During setup, a skill picker will appear:
 
 ```
 ◆ Select skills to install (space to toggle)
@@ -70,95 +211,21 @@ During setup, `npx skills add apify/agent-skills` will open an interactive picke
 
 **Press `a` to select all four skills, then press `Enter`.**
 
-Here's what each one does:
-
-| Skill | What it does | Who it's for |
-|---|---|---|
-| **apify-ultimate-scraper** | Scrapes 55+ platforms — Instagram, Google Maps, Amazon, TikTok, YouTube, Walmart, TripAdvisor, and more. Automatically picks the right Apify Actor for the platform you need. | Everyone |
-| **apify-actor-development** | Scaffolds, builds, tests, and deploys Apify Actors in JavaScript, TypeScript, or Python. Follows best practices and generates proper schemas. | Developers |
-| **apify-actorization** | Converts an existing project (scraper, API wrapper, automation) into a deployable Apify Actor with proper input/output handling. | Developers |
-| **apify-generate-output-schema** | Generates output schema files for Apify Actors so downstream tools know what data shape to expect. | Developers |
-
-> If you're not building Actors and just want to scrape data, `apify-ultimate-scraper` is the one that matters most. But select all — they don't conflict.
-
----
-
-## Awesome Skills (Installed Automatically)
-
-These 9 skills are copied directly into your `.claude/skills/` directory during setup. No wizard needed — they're just there.
-
 | Skill | What it does |
 |---|---|
-| **apify-lead-generation** | Generate B2B/B2C leads by scraping business directories, social profiles, and contact data from Google Maps, LinkedIn, Instagram, and more. |
-| **apify-competitor-intelligence** | Analyze competitor strategies, content, pricing, ads, and market positioning across Google Maps, Instagram, Facebook, YouTube, and TikTok. |
-| **apify-brand-reputation-monitoring** | Track reviews, ratings, and sentiment across Google Maps, TripAdvisor, Instagram, and YouTube. |
-| **apify-ecommerce** | Pricing intelligence, product research, and customer sentiment across Amazon, Walmart, eBay, and 50+ marketplaces. |
-| **apify-content-analytics** | Track engagement metrics, measure campaign ROI, and analyze content performance on Instagram, Facebook, YouTube, and TikTok. |
-| **apify-influencer-discovery** | Find and evaluate influencers for brand partnerships and verify audience authenticity on Instagram, YouTube, and TikTok. |
-| **apify-market-research** | Analyze market conditions, geographic opportunities, and consumer behavior using Google Maps, Facebook, Instagram, and TripAdvisor data. |
-| **apify-trend-analysis** | Discover and track emerging trends across Google Trends, Instagram, TikTok, and YouTube. |
-| **apify-audience-analysis** | Understand audience demographics, preferences, and engagement patterns on Instagram, Facebook, YouTube, and TikTok. |
+| **apify-ultimate-scraper** | Scrapes 55+ platforms — Instagram, Google Maps, Amazon, TikTok, YouTube, and more. Automatically picks the right Apify Actor. |
+| **apify-actor-development** | Scaffolds, builds, tests, and deploys Apify Actors. For developers. |
+| **apify-actorization** | Converts existing projects into deployable Apify Actors. For developers. |
+| **apify-generate-output-schema** | Generates output schemas for Apify Actors. For developers. |
 
----
-
-## Try Your First Prompt
-
-Once Claude Code is running, paste this:
-
-```
-Find 50 coffee shops in Austin, TX with at least 4 stars on Google Maps.
-Get their name, address, phone number, website, rating, and review count.
-Export as CSV.
-```
-
-Claude Code will automatically use the right skill to find the scraper, run it, and return structured data.
-
-### Browse all example prompts
-
-Open the prompts file right in your terminal so you can copy and paste:
-
-```bash
-cat first-prompt.md
-```
-
-Or open it in your default editor:
-
-```bash
-open first-prompt.md        # macOS
-xdg-open first-prompt.md    # Linux
-```
-
-You can also [view the prompts on GitHub](https://github.com/0xmerkle/ai-that-works-apr14-2026-starter-kit/blob/main/first-prompt.md).
-
-### Where do outputs go?
-
-When Claude Code generates a file (like a CSV, JSON export, or report), it saves it to your **current working directory** — the same folder you're running `claude` from. To find and open your results:
-
-```bash
-# List recently created files
-ls -lt *.csv *.json 2>/dev/null
-
-# Open a CSV in your default app (Excel, Numbers, etc.)
-open austin_coffee_shops.csv        # macOS
-xdg-open austin_coffee_shops.csv    # Linux
-```
-
-Claude Code will tell you the filename when it creates it. You can also ask it directly: "Where did you save that file?" or "Open the CSV you just created."
-
-> **Tip:** If you ask Claude Code to "export as CSV," it writes a `.csv` file. If you say "show me the results," it prints them directly in the terminal. Be specific about what you want.
-
----
-
-## What Got Installed
-
-After running `setup.sh`, your project looks like this:
+### What got installed
 
 ```
 ai-that-works-apr14-2026-starter-kit/
 ├── .agents/
 │   └── skills/             ← Agent Skills (from npx skills add)
 ├── .claude/
-│   └── skills/             ← Awesome Skills (copied from repo)
+│   └── skills/             ← Awesome Skills (9 use-case skills)
 │       ├── apify-lead-generation/
 │       ├── apify-competitor-intelligence/
 │       ├── apify-brand-reputation-monitoring/
@@ -170,9 +237,33 @@ ai-that-works-apr14-2026-starter-kit/
 │       └── apify-audience-analysis/
 ├── .env                    ← Your Apify API token (git-ignored)
 ├── CLAUDE.md               ← Project context for Claude Code
-├── first-prompt.md         ← Example prompts to try
-└── setup.sh                ← The setup script you just ran
+├── first-prompt.md         ← Starter prompts for each skill
+├── build-your-own-skill.md ← Guide to creating skills from scratch
+└── setup.sh                ← The setup script
 ```
+
+### Where do outputs go?
+
+When Claude Code generates a file (CSV, JSON, report), it saves it to your current working directory. To find your results:
+
+```bash
+ls -lt *.csv *.json 2>/dev/null
+```
+
+> **Tip:** "Export as CSV" writes a file. "Show me the results" prints to terminal. Be specific about what you want.
+
+---
+
+## Troubleshooting
+
+See [`troubleshooting.md`](./troubleshooting.md) for detailed fixes.
+
+**Quick fixes:**
+
+- **"command not found: claude"** — Run `curl -fsSL https://claude.ai/install.sh | bash` and restart your terminal
+- **"APIFY_TOKEN not set"** — Get your token from [console.apify.com/account/integrations](https://console.apify.com/account/integrations) and add to `.env`
+- **"Node.js version too old"** — Download LTS from [nodejs.org](https://nodejs.org/)
+- **Skills not loading** — Make sure you're running `claude` from inside this project directory
 
 ---
 
@@ -183,21 +274,8 @@ ai-that-works-apr14-2026-starter-kit/
 | macOS (Apple Silicon) | Fully supported |
 | macOS (Intel) | Fully supported |
 | Linux (Ubuntu 18.04+) | Fully supported |
-| Windows (WSL) | Works via WSL — see [setup guide](https://learn.microsoft.com/en-us/windows/wsl/install) |
+| Windows (WSL) | Works via WSL |
 | Windows (native) | Not supported — use WSL |
-
----
-
-## Troubleshooting
-
-See [`troubleshooting.md`](./troubleshooting.md) for common issues and fixes.
-
-**Quick fixes:**
-
-- **"command not found: claude"** — Run the setup script again, or install manually: `curl -fsSL https://claude.ai/install.sh | bash`
-- **"APIFY_TOKEN not set"** — Copy your token from [console.apify.com/account/integrations](https://console.apify.com/account/integrations) and add it to your `.env` file
-- **"Node.js version too old"** — Download the latest LTS from [nodejs.org](https://nodejs.org/)
-- **Skills not loading** — Make sure you're running `claude` from inside this project directory
 
 ---
 
