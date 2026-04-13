@@ -200,37 +200,40 @@ echo ""
 print_ok "Apify Agent Skills installed"
 
 # ─────────────────────────────────────────────────────────────
-# 6. Install Awesome Skills (9 use-case skills → .claude/skills/)
+# 6. Install Awesome Skills (9 use-case plugins via marketplace)
 # ─────────────────────────────────────────────────────────────
 
 print_step "Installing Apify Awesome Skills (use cases)..."
 
-SKILLS_DIR="$(pwd)/.claude/skills"
-TEMP_DIR=$(mktemp -d)
+# Add the awesome-skills marketplace
+print_info "Adding apify/awesome-skills marketplace..."
+claude plugin marketplace add apify/awesome-skills --scope project
 
-print_info "Cloning apify/awesome-skills..."
+# Install each plugin from the marketplace
+AWESOME_SKILLS=(
+  "apify-lead-generation"
+  "apify-brand-reputation-monitoring"
+  "apify-competitor-intelligence"
+  "apify-market-research"
+  "apify-influencer-discovery"
+  "apify-trend-analysis"
+  "apify-content-analytics"
+  "apify-audience-analysis"
+  "apify-ecommerce"
+)
 
-git clone --quiet https://github.com/apify/awesome-skills.git "$TEMP_DIR/awesome-skills"
-
-# Create .claude/skills if it doesn't exist
-mkdir -p "$SKILLS_DIR"
-
-# Copy each skill folder into .claude/skills/
 SKILL_COUNT=0
-for skill_dir in "$TEMP_DIR/awesome-skills/skills/"*/; do
-  if [ -d "$skill_dir" ]; then
-    skill_name=$(basename "$skill_dir")
-    cp -r "$skill_dir" "$SKILLS_DIR/$skill_name"
+for skill in "${AWESOME_SKILLS[@]}"; do
+  if claude plugin install "${skill}@awesome-skills" --scope project 2>/dev/null; then
+    print_ok "$skill"
     SKILL_COUNT=$((SKILL_COUNT + 1))
-    print_ok "$skill_name"
+  else
+    print_fail "$skill (install failed — try manually: claude plugin install ${skill}@awesome-skills)"
   fi
 done
 
-# Clean up temp directory
-rm -rf "$TEMP_DIR"
-
 echo ""
-print_ok "$SKILL_COUNT awesome skills installed to .claude/skills/"
+print_ok "$SKILL_COUNT awesome skills installed via plugin system"
 
 # ─────────────────────────────────────────────────────────────
 # 7. Install mcpc CLI tool
@@ -257,7 +260,7 @@ echo ""
 echo "  What's ready:"
 echo -e "  ${GREEN}✓${NC} Claude Code"
 echo -e "  ${GREEN}✓${NC} Apify Agent Skills (4 core via npx skills)"
-echo -e "  ${GREEN}✓${NC} Apify Awesome Skills ($SKILL_COUNT use-case skills in .claude/skills/)"
+echo -e "  ${GREEN}✓${NC} Apify Awesome Skills ($SKILL_COUNT use-case plugins)"
 echo -e "  ${GREEN}✓${NC} mcpc CLI tool"
 echo -e "  ${GREEN}✓${NC} Environment configured"
 echo ""
